@@ -7,18 +7,25 @@ import SkillsSection from "@/components/SkillsSection";
 import EducationSection from "@/components/EducationSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { getCVData } from "@/lib/getCVData";
 
-export default function Home() {
+// Force dynamic rendering
+export const dynamic = 'force-dynamic';
+export const revalidate = 0;
+
+export default async function Home() {
+  const cvData = await getCVData();
+  
   return (
     <main className="relative bg-[#0A0A0F] min-h-screen">
       <Navbar />
-      <HeroSection />
-      <AboutSection />
-      <ExperienceSection />
-      <ProjectsSection />
-      <SkillsSection />
-      <EducationSection />
-      <ContactSection />
+      <HeroSection data={cvData} />
+      <AboutSection data={cvData} />
+      <ExperienceSection data={cvData} />
+      <ProjectsSection data={cvData} />
+      <SkillsSection data={cvData} />
+      <EducationSection data={cvData} />
+      <ContactSection data={cvData} />
       <Footer />
     </main>
   );

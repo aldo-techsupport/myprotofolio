@@ -1,0 +1,277 @@
+const mysql = require('mysql2/promise');
+require('dotenv').config({ path: '.env.local' });
+
+const cvData = {
+  name: "Aldo Aditya Putra",
+  title: "IT Support · Network Engineer · Web Developer",
+  tagline: "Building robust networks & elegant web solutions",
+  contact: {
+    phone: "0822-8585-1668",
+    email: "aldoadityaputra24@gmail.com",
+    linkedin: "linkedin.com/in/aldoadityaputra14",
+    location: "Padang Barat, Kota Padang",
+  },
+  about: `Fresh graduate D4 Teknik Telekomunikasi (IPK 3.62/4.00) dengan pengalaman nyata di bidang IT Support, network infrastructure, dan web development. Mahir dalam konfigurasi jaringan Mikrotik & OpenWrt, implementasi cloud AWS, serta pengembangan aplikasi web berbasis Laravel dan PHP. Memiliki track record proyek web mandiri mulai dari sistem monitoring Mikrotik, IoT monitoring, hingga aplikasi berbasis database. Terbiasa bekerja cepat, problem-solving oriented, dan adaptif di lingkungan teknis yang dinamis.`,
+  stats: [
+    { label: "IPK", value: "3.62", unit: "/4.00" },
+    { label: "Proyek", value: "4+", unit: "selesai" },
+    { label: "Sertifikasi", value: "3", unit: "aktif" },
+    { label: "Pengalaman", value: "1+", unit: "tahun" },
+  ],
+  experience: [
+    {
+      company: "PT Menara Agung",
+      role: "IT Support",
+      period: "Mei 2025 – Sekarang",
+      location: "Padang",
+      type: "Full Time",
+      color: "#00FFB2",
+      description: "Dukungan teknis L1/L2 seluruh infrastruktur IT perusahaan.",
+      tasks: [
+        "Memberikan dukungan teknis L1/L2 kepada seluruh user internal: troubleshooting hardware, software, dan konektivitas jaringan.",
+        "Instalasi, konfigurasi, dan pemeliharaan perangkat komputer, printer, aksesoris, dan periferal jaringan.",
+        "Monitoring dan maintenance infrastruktur jaringan LAN/WAN untuk menjaga uptime dan performa optimal.",
+        "Mengelola tiket helpdesk dan mendokumentasikan insiden beserta resolusinya sesuai SLA yang berlaku.",
+        "Setup dan konfigurasi akun pengguna, email corporate, dan hak akses sistem sesuai kebijakan keamanan IT.",
+        "Koordinasi dengan vendor untuk pengadaan, penggantian, dan pembaruan aset perangkat IT.",
+        "Mendukung pemeliharaan sistem keamanan jaringan: VPN, firewall, dan manajemen bandwidth.",
+        "Mendokumentasikan topologi jaringan dan SOP teknis untuk keperluan audit dan referensi internal.",
+      ],
+      tags: ["IT Support", "LAN/WAN", "VPN", "Helpdesk", "Troubleshooting"],
+    },
+    {
+      company: "PT Septagon Telematika Indonesia",
+      role: "Intern – Project Management & Technical Support",
+      period: "Jul 2023 – Des 2023",
+      location: "Jakarta",
+      type: "Internship",
+      color: "#7B61FF",
+      description: "Manajemen proyek pembangunan Chamber dan dukungan teknis lapangan.",
+      tasks: [
+        "Mengawasi pelaksanaan lapangan proyek pembangunan Chamber dan memastikan kesesuaian dengan rencana proyek.",
+        "Melakukan evaluasi performa proyek, pengumpulan data, dan analisis potensi risiko serta rekomendasi korektif.",
+        "Memberikan dukungan teknis aktif: troubleshooting on-site dan solusi teknis untuk hambatan eksekusi proyek.",
+        "Membantu proses identifikasi, analisis, dan mitigasi risiko proyek secara sistematis.",
+      ],
+      tags: ["Project Management", "Technical Support", "Risk Analysis", "On-site"],
+    },
+    {
+      company: "PT Surveyor Indonesia",
+      role: "Intern – Project Documentation & Quality Assurance",
+      period: "Jul 2023 – Des 2023",
+      location: "Jakarta",
+      type: "Internship",
+      color: "#FF6B6B",
+      description: "Dokumentasi proyek dan quality assurance milestone.",
+      tasks: [
+        "Memantau progress proyek dan memverifikasi pencapaian milestone sesuai timeline yang telah ditetapkan.",
+        "Menyusun laporan kemajuan proyek dan mendokumentasikan setiap perubahan secara terstruktur dan akurat.",
+        "Melaksanakan uji fungsi alat sebelum deployment ke chamber dan menyusun laporan hasil pengujian.",
+        "Mendukung administrasi operasional: pembuatan dokumen SOP dan pengelolaan data progress bulanan.",
+      ],
+      tags: ["Documentation", "QA Testing", "SOP", "Reporting"],
+    },
+  ],
+  projects: [
+    {
+      title: "Mikrotik Network Monitoring Dashboard",
+      type: "Web Developer – Personal Project",
+      year: "2024",
+      color: "#00FFB2",
+      emoji: "🔌",
+      description: "Dashboard monitoring jaringan Mikrotik berbasis web dengan real-time bandwidth monitoring, manajemen user PPPoE, status koneksi, dan alert otomatis.",
+      highlights: [
+        "Real-time bandwidth monitoring & alert otomatis",
+        "Manajemen user PPPoE terintegrasi",
+        "Integrasi RouterOS API langsung ke Mikrotik",
+        "Visualisasi data dengan Chart.js interaktif",
+      ],
+      stack: ["Laravel", "PHP", "MySQL", "Bootstrap", "Chart.js", "Mikrotik API"],
+    },
+    {
+      title: "IoT Monitoring System",
+      type: "Web Developer – Personal Project",
+      year: "2024",
+      color: "#7B61FF",
+      emoji: "📡",
+      description: "Sistem monitoring IoT berbasis web untuk membaca dan menampilkan data sensor (suhu, kelembaban) secara real-time dengan notifikasi threshold otomatis.",
+      highlights: [
+        "Komunikasi MQTT/HTTP ke backend Laravel",
+        "Visualisasi sensor suhu & kelembaban real-time",
+        "Notifikasi threshold otomatis",
+        "Dashboard grafik interaktif Chart.js",
+      ],
+      stack: ["Laravel", "PHP", "MySQL", "MQTT", "Chart.js", "REST API"],
+    },
+    {
+      title: "Jaringan RT/RW Internet",
+      type: "Network Engineer – Tugas Akhir",
+      year: "2024",
+      color: "#FFB800",
+      emoji: "🌐",
+      description: "Implementasi jaringan internet RT/RW di Simalidu Koto Salak Dharmasraya menggunakan Mikrotik & OpenWrt dengan analisa QoS dan monitoring Wireshark.",
+      highlights: [
+        "Point-to-Point wireless 1,87 Km dengan Mikrotik",
+        "Bandwidth management per-user dengan QoS",
+        "Monitoring TCP/IP dengan Wireshark",
+        "Survey & analisa coverage area seluler",
+      ],
+      stack: ["Mikrotik RouterOS", "OpenWrt", "Wireshark", "TCP/IP", "QoS"],
+    },
+    {
+      title: "GTA V Server – AWS Cloud",
+      type: "Cloud Project – Kampus Merdeka",
+      year: "2023",
+      color: "#FF6B6B",
+      emoji: "☁️",
+      description: "Deploy server game GTA V multiplayer di AWS EC2 dengan konfigurasi optimal, security group, elastic IP, dan cost monitoring menggunakan AWS Cost Explorer.",
+      highlights: [
+        "Deploy EC2 instance dengan konfigurasi optimal",
+        "Security group & elastic IP configuration",
+        "Auto-scaling sederhana untuk performa",
+        "Cost monitoring via AWS Cost Explorer",
+      ],
+      stack: ["AWS EC2", "S3", "RDS", "VPC", "IAM", "CloudWatch"],
+    },
+  ],
+  skills: [
+    {
+      category: "Web Development",
+      icon: "💻",
+      color: "#00FFB2",
+      items: [
+        { name: "Laravel / PHP", level: 85 },
+        { name: "JavaScript / ES6+", level: 78 },
+        { name: "HTML5 / CSS3", level: 90 },
+        { name: "Bootstrap", level: 85 },
+        { name: "REST API", level: 80 },
+        { name: "MySQL", level: 82 },
+      ],
+    },
+    {
+      category: "Networking",
+      icon: "🔗",
+      color: "#7B61FF",
+      items: [
+        { name: "Mikrotik RouterOS", level: 88 },
+        { name: "OpenWrt", level: 80 },
+        { name: "LAN/WAN", level: 85 },
+        { name: "VPN / Firewall", level: 78 },
+        { name: "TCP/IP", level: 85 },
+        { name: "Wireshark", level: 75 },
+      ],
+    },
+    {
+      category: "Cloud & Tools",
+      icon: "☁️",
+      color: "#FF6B6B",
+      items: [
+        { name: "AWS (EC2, S3, RDS)", level: 75 },
+        { name: "Git / Version Control", level: 80 },
+        { name: "Linux / CLI", level: 72 },
+        { name: "MQTT Protocol", level: 70 },
+        { name: "Docker (basic)", level: 55 },
+        { name: "MS Office Suite", level: 88 },
+      ],
+    },
+  ],
+  education: {
+    degree: "D4 Teknik Telekomunikasi",
+    institution: "Politeknik Negeri Padang",
+    period: "Agustus 2020 – Agustus 2024",
+    gpa: "3.62 / 4.00",
+    thesis: "Implementasi dan Analisa Kinerja Jaringan Internet RT/RW Menggunakan Mikrotik dan OpenWrt di Simalidu Koto Salak Dharmasraya",
+  },
+  certifications: [
+    {
+      name: "Cloud Computing for Jobseekers (AWS)",
+      issuer: "Kampus Merdeka – Chairos Academy",
+      period: "Feb 2023 – Jun 2023",
+      color: "#FF9900",
+      topics: ["AWS EC2", "S3", "RDS", "VPC", "IAM", "CloudWatch"],
+    },
+  ],
+  organization: {
+    name: "CyberTech",
+    role: "Staff Informasi & Komunikasi (Infokom)",
+    period: "Jan 2021 – Des 2023",
+    tasks: [
+      "Mengelola seluruh platform media sosial (Instagram, Twitter, Facebook)",
+      "Merancang dan mengeksekusi strategi konten digital untuk promosi acara",
+      "Dokumentasi kegiatan organisasi (foto & video) dan pengelolaan arsip",
+      "Menyusun laporan analitik kinerja media sosial sebagai bahan evaluasi",
+    ],
+  },
+};
+
+async function setupDatabase() {
+  let connection;
+  
+  try {
+    console.log('🔌 Connecting to MySQL...');
+    connection = await mysql.createConnection({
+      host: process.env.DB_HOST || 'localhost',
+      port: parseInt(process.env.DB_PORT || '3306'),
+      user: process.env.DB_USER || 'root',
+      password: process.env.DB_PASSWORD || '',
+      database: process.env.DB_NAME || 'myprotofolio',
+    });
+
+    console.log('✅ Connected to database');
+
+    // Create tables
+    console.log('📋 Creating tables...');
+    
+    await connection.execute(`
+      CREATE TABLE IF NOT EXISTS cv_data (
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        data_key VARCHAR(50) UNIQUE NOT NULL,
+        data_value JSON NOT NULL,
+        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+      )
+    `);
+
+    console.log('✅ Tables created');
+
+    // Insert initial data
+    console.log('📝 Inserting initial data...');
+
+    const dataEntries = [
+      { key: 'personal', value: {
+        name: cvData.name,
+        title: cvData.title,
+        tagline: cvData.tagline,
+        about: cvData.about,
+        contact: cvData.contact
+      }},
+      { key: 'stats', value: cvData.stats },
+      { key: 'experience', value: cvData.experience },
+      { key: 'projects', value: cvData.projects },
+      { key: 'skills', value: cvData.skills },
+      { key: 'education', value: cvData.education },
+      { key: 'certifications', value: cvData.certifications },
+      { key: 'organization', value: cvData.organization },
+    ];
+
+    for (const entry of dataEntries) {
+      await connection.execute(
+        `INSERT INTO cv_data (data_key, data_value) VALUES (?, ?)
+         ON DUPLICATE KEY UPDATE data_value = ?`,
+        [entry.key, JSON.stringify(entry.value), JSON.stringify(entry.value)]
+      );
+      console.log(`  ✓ Inserted ${entry.key}`);
+    }
+
+    console.log('✅ Database setup completed successfully!');
+    
+  } catch (error) {
+    console.error('❌ Error setting up database:', error);
+    process.exit(1);
+  } finally {
+    if (connection) {
+      await connection.end();
+    }
+  }
+}
+
+setupDatabase();

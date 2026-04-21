@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { cvData } from "@/lib/data";
 
-export default function ProjectsSection() {
+export default function ProjectsSection({ data }: { data: any }) {
   const [hovered, setHovered] = useState<number | null>(null);
 
   return (
@@ -32,7 +31,7 @@ export default function ProjectsSection() {
 
         {/* Grid */}
         <div className="grid md:grid-cols-2 gap-6">
-          {cvData.projects.map((project, i) => (
+          {data.projects?.map((project: any, i: number) => (
             <motion.div
               key={i}
               initial={{ opacity: 0, y: 30 }}
@@ -80,7 +79,7 @@ export default function ProjectsSection() {
 
               {/* Highlights */}
               <ul className="space-y-1.5 mb-5">
-                {project.highlights.map((h, j) => (
+                {project.highlights?.map((h: string, j: number) => (
                   <li key={j} className="flex items-start gap-2 text-xs text-[#8888AA]">
                     <span className="mt-1 w-1 h-1 rounded-full flex-shrink-0" style={{ background: project.color }} />
                     {h}
@@ -90,7 +89,7 @@ export default function ProjectsSection() {
 
               {/* Stack tags */}
               <div className="flex flex-wrap gap-1.5">
-                {project.stack.map((s) => (
+                {project.stack?.map((s: string) => (
                   <span
                     key={s}
                     className="px-2 py-0.5 rounded text-xs font-mono"

@@ -1,7 +1,6 @@
 "use client";
 import { useRef, useState, useEffect } from "react";
 import { motion, useInView } from "framer-motion";
-import { cvData } from "@/lib/data";
 
 function SkillBar({ name, level, color, index }: { name: string; level: number; color: string; index: number }) {
   const ref = useRef(null);
@@ -32,7 +31,7 @@ function SkillBar({ name, level, color, index }: { name: string; level: number; 
   );
 }
 
-export default function SkillsSection() {
+export default function SkillsSection({ data }: { data: any }) {
   const [active, setActive] = useState(0);
 
   return (
@@ -57,7 +56,7 @@ export default function SkillsSection() {
 
         {/* Category tabs */}
         <div className="flex flex-wrap gap-2 mb-10">
-          {cvData.skills.map((cat, i) => (
+          {data.skills?.map((cat: any, i: number) => (
             <motion.button
               key={i}
               onClick={() => setActive(i)}
@@ -82,12 +81,12 @@ export default function SkillsSection() {
         <div className="grid md:grid-cols-2 gap-12">
           {/* Skill bars */}
           <div className="space-y-5">
-            {cvData.skills[active].items.map((skill, i) => (
+            {data.skills?.[active]?.items?.map((skill: any, i: number) => (
               <SkillBar
                 key={skill.name}
                 name={skill.name}
                 level={skill.level}
-                color={cvData.skills[active].color}
+                color={data.skills[active].color}
                 index={i}
               />
             ))}
@@ -99,8 +98,8 @@ export default function SkillsSection() {
               All Skills
             </h3>
             <div className="flex flex-wrap gap-2">
-              {cvData.skills.flatMap((cat) =>
-                cat.items.map((s) => (
+              {data.skills?.flatMap((cat: any) =>
+                cat.items?.map((s: any) => (
                   <motion.span
                     key={s.name + cat.category}
                     initial={{ opacity: 0, scale: 0.8 }}

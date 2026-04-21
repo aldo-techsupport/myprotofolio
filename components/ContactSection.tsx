@@ -1,15 +1,14 @@
 "use client";
 import { motion } from "framer-motion";
-import { cvData } from "@/lib/data";
 
-const contactItems = [
-  { icon: "📞", label: "Phone", value: cvData.contact.phone, href: `tel:${cvData.contact.phone}`, color: "#00FFB2" },
-  { icon: "✉️", label: "Email", value: cvData.contact.email, href: `mailto:${cvData.contact.email}`, color: "#7B61FF" },
-  { icon: "🔗", label: "LinkedIn", value: cvData.contact.linkedin, href: `https://${cvData.contact.linkedin}`, color: "#0077B5" },
-  { icon: "📍", label: "Location", value: cvData.contact.location, href: "#", color: "#FF6B6B" },
-];
-
-export default function ContactSection() {
+export default function ContactSection({ data }: { data: any }) {
+  const contactItems = [
+    { icon: "📞", label: "Phone", value: data.contact?.phone, href: `tel:${data.contact?.phone}`, color: "#00FFB2" },
+    { icon: "✉️", label: "Email", value: data.contact?.email, href: `mailto:${data.contact?.email}`, color: "#7B61FF" },
+    { icon: "🔗", label: "LinkedIn", value: data.contact?.linkedin, href: `https://${data.contact?.linkedin}`, color: "#0077B5" },
+    { icon: "📍", label: "Location", value: data.contact?.location, href: "#", color: "#FF6B6B" },
+  ];
+  
   return (
     <section id="contact" className="py-24 relative overflow-hidden">
       {/* Background effects */}
@@ -79,7 +78,7 @@ export default function ContactSection() {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <motion.a
-            href={`mailto:${cvData.contact.email}`}
+            href={`mailto:${data.contact.email}`}
             className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-[#00FFB2] text-[#0A0A0F] font-bold rounded-full text-sm"
             whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,255,178,0.5)" }}
             whileTap={{ scale: 0.95 }}
@@ -87,7 +86,7 @@ export default function ContactSection() {
             ✉️ Kirim Email
           </motion.a>
           <motion.a
-            href={`https://${cvData.contact.linkedin}`}
+            href={`https://${data.contact.linkedin}`}
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center justify-center gap-2 px-8 py-4 border border-[#7B61FF]/50 text-[#7B61FF] font-bold rounded-full text-sm hover:bg-[#7B61FF]/10 transition-all"

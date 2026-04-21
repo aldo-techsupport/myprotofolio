@@ -1,9 +1,8 @@
 "use client";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { cvData } from "@/lib/data";
 
-export default function ExperienceSection() {
+export default function ExperienceSection({ data }: { data: any }) {
   const [active, setActive] = useState(0);
 
   return (
@@ -29,7 +28,7 @@ export default function ExperienceSection() {
         <div className="grid md:grid-cols-3 gap-0">
           {/* Sidebar tabs */}
           <div className="relative md:border-r border-[#1E1E2E]">
-            {cvData.experience.map((exp, i) => (
+            {data.experience?.map((exp: any, i: number) => (
               <motion.button
                 key={i}
                 onClick={() => setActive(i)}
@@ -76,7 +75,7 @@ export default function ExperienceSection() {
                 transition={{ duration: 0.3 }}
               >
                 {(() => {
-                  const exp = cvData.experience[active];
+                  const exp = data.experience[active];
                   return (
                     <>
                       <div className="flex items-start justify-between mb-2 flex-wrap gap-2">
@@ -97,7 +96,7 @@ export default function ExperienceSection() {
                       <p className="text-[#8888AA] text-sm mb-6 leading-relaxed">{exp.description}</p>
 
                       <ul className="space-y-3 mb-6">
-                        {exp.tasks.map((task, i) => (
+                        {exp.tasks?.map((task: string, i: number) => (
                           <motion.li
                             key={i}
                             initial={{ opacity: 0, x: 10 }}
@@ -112,7 +111,7 @@ export default function ExperienceSection() {
                       </ul>
 
                       <div className="flex flex-wrap gap-2">
-                        {exp.tags.map((tag) => (
+                        {exp.tags?.map((tag: string) => (
                           <span
                             key={tag}
                             className="px-3 py-1 rounded-full text-xs font-mono tag-pulse"

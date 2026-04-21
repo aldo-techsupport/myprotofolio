@@ -1,11 +1,10 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
-import { cvData } from "@/lib/data";
 
 const roles = ["IT Support", "Network Engineer", "Web Developer", "Cloud Enthusiast"];
 
-export default function HeroSection() {
+export default function HeroSection({ data }: { data: any }) {
   const [roleIndex, setRoleIndex] = useState(0);
   const [displayed, setDisplayed] = useState("");
   const [typing, setTyping] = useState(true);
@@ -164,8 +163,7 @@ export default function HeroSection() {
             >
               Fresh graduate D4 Teknik Telekomunikasi dengan IPK{" "}
               <span className="text-[#00FFB2] font-medium">3.62/4.00</span>. Spesialis
-              jaringan Mikrotik & AWS, developer web berbasis Laravel, berbasis di{" "}
-              <span className="text-[#E8E8F0]">Jakarta</span>.
+              jaringan Mikrotik & AWS, developer web berbasis Laravel
             </motion.p>
 
             {/* CTAs */}
@@ -200,7 +198,7 @@ export default function HeroSection() {
               transition={{ duration: 0.6, delay: 0.5 }}
               className="flex gap-6"
             >
-              {cvData.stats.map((stat) => (
+              {data.stats?.map((stat: any) => (
                 <div key={stat.label} className="text-center">
                   <div className="font-display text-2xl font-bold text-[#00FFB2]">
                     {stat.value}
@@ -241,7 +239,7 @@ export default function HeroSection() {
 
                 <div className="space-y-2">
                   {[
-                    { icon: "📍", text: "Jakarta Selatan" },
+                    { icon: "📍", text: "Padang" },
                     { icon: "📧", text: "aldoadityaputra24@gmail.com" },
                     { icon: "🎓", text: "D4 Teknik Telekomunikasi" },
                     { icon: "⭐", text: "IPK 3.62 / 4.00" },

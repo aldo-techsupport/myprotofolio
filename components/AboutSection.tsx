@@ -1,6 +1,5 @@
 "use client";
 import { motion } from "framer-motion";
-import { cvData } from "@/lib/data";
 
 const highlights = [
   { icon: "🔌", label: "Mikrotik & OpenWrt", sub: "RouterOS, P2P, QoS" },
@@ -11,7 +10,7 @@ const highlights = [
   { icon: "🖥️", label: "IT Support L1/L2", sub: "Helpdesk, SLA, Troubleshooting" },
 ];
 
-export default function AboutSection() {
+export default function AboutSection({ data }: { data: any }) {
   return (
     <section id="about" className="py-24 relative">
       <div className="max-w-6xl mx-auto px-6">

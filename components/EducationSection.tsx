@@ -1,8 +1,7 @@
 "use client";
 import { motion } from "framer-motion";
-import { cvData } from "@/lib/data";
 
-export default function EducationSection() {
+export default function EducationSection({ data }: { data: any }) {
   return (
     <section id="education" className="py-24 relative">
       <div className="absolute inset-0 grid-bg opacity-15" />
@@ -37,9 +36,9 @@ export default function EducationSection() {
             <div className="absolute -top-8 -right-8 w-32 h-32 rounded-full bg-[#00FFB2]/5 group-hover:bg-[#00FFB2]/10 transition-colors" />
 
             <div className="text-4xl mb-4">🎓</div>
-            <div className="font-mono text-xs text-[#4A4A6A] mb-1">{cvData.education.period}</div>
-            <h3 className="font-display text-xl font-bold text-[#E8E8F0] mb-1">{cvData.education.degree}</h3>
-            <div className="text-[#00FFB2] font-medium mb-4">{cvData.education.institution}</div>
+            <div className="font-mono text-xs text-[#4A4A6A] mb-1">{data.education.period}</div>
+            <h3 className="font-display text-xl font-bold text-[#E8E8F0] mb-1">{data.education.degree}</h3>
+            <div className="text-[#00FFB2] font-medium mb-4">{data.education.institution}</div>
 
             <div className="flex items-center gap-3 mb-5 p-3 rounded-xl bg-[#00FFB2]/5 border border-[#00FFB2]/10">
               <div className="text-center">
@@ -55,7 +54,7 @@ export default function EducationSection() {
 
             <div className="p-3 rounded-xl bg-[#16161F] border border-[#1E1E2E]">
               <div className="text-xs font-mono text-[#4A4A6A] mb-1 uppercase">Tugas Akhir</div>
-              <p className="text-xs text-[#8888AA] leading-relaxed">{cvData.education.thesis}</p>
+              <p className="text-xs text-[#8888AA] leading-relaxed">{data.education.thesis}</p>
             </div>
           </motion.div>
 
@@ -72,17 +71,17 @@ export default function EducationSection() {
               <div className="flex items-start gap-4">
                 <div className="text-3xl">☁️</div>
                 <div className="flex-1">
-                  <div className="font-mono text-xs text-[#4A4A6A] mb-1">{cvData.certifications[0].period}</div>
-                  <h3 className="font-display font-bold text-[#E8E8F0] mb-0.5">{cvData.certifications[0].name}</h3>
-                  <div className="text-sm mb-3" style={{ color: cvData.certifications[0].color }}>
-                    {cvData.certifications[0].issuer}
+                  <div className="font-mono text-xs text-[#4A4A6A] mb-1">{data.certifications[0].period}</div>
+                  <h3 className="font-display font-bold text-[#E8E8F0] mb-0.5">{data.certifications[0].name}</h3>
+                  <div className="text-sm mb-3" style={{ color: data.certifications[0].color }}>
+                    {data.certifications[0].issuer}
                   </div>
                   <div className="flex flex-wrap gap-1.5">
-                    {cvData.certifications[0].topics.map((t) => (
+                    {data.certifications[0]?.topics?.map((t: string) => (
                       <span
                         key={t}
                         className="px-2 py-0.5 rounded text-xs font-mono"
-                        style={{ background: `${cvData.certifications[0].color}15`, color: cvData.certifications[0].color }}
+                        style={{ background: `${data.certifications[0].color}15`, color: data.certifications[0].color }}
                       >
                         {t}
                       </span>
@@ -103,11 +102,11 @@ export default function EducationSection() {
               <div className="flex items-start gap-4">
                 <div className="text-3xl">🏛️</div>
                 <div className="flex-1">
-                  <div className="font-mono text-xs text-[#4A4A6A] mb-1">{cvData.organization.period}</div>
-                  <h3 className="font-display font-bold text-[#E8E8F0] mb-0.5">{cvData.organization.name}</h3>
-                  <div className="text-sm text-[#7B61FF] mb-3">{cvData.organization.role}</div>
+                  <div className="font-mono text-xs text-[#4A4A6A] mb-1">{data.organization.period}</div>
+                  <h3 className="font-display font-bold text-[#E8E8F0] mb-0.5">{data.organization.name}</h3>
+                  <div className="text-sm text-[#7B61FF] mb-3">{data.organization?.role}</div>
                   <ul className="space-y-1.5">
-                    {cvData.organization.tasks.map((t, i) => (
+                    {data.organization?.tasks?.map((t: string, i: number) => (
                       <li key={i} className="flex items-start gap-2 text-xs text-[#8888AA]">
                         <span className="mt-1.5 w-1 h-1 rounded-full bg-[#7B61FF] flex-shrink-0" />
                         {t}

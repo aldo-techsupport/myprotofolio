@@ -123,3 +123,59 @@ Atau drag & drop folder ke [vercel.com](https://vercel.com) dashboard.
 ---
 
 Made with ❤️ — Aldo Aditya Putra © 2025
+
+
+---
+
+## 🔐 Admin Panel (NEW!)
+
+Website ini sekarang dilengkapi dengan **Admin Panel** untuk mengedit data CV secara manual tanpa perlu coding!
+
+### 🚪 Login Admin
+- **URL:** `http://your-domain.com/login`
+- **Username:** `admin`
+- **Password:** `admin123` ⚠️ **GANTI SEGERA!**
+
+### 📝 Fitur Admin Panel
+- ✅ Edit data personal (nama, title, about, kontak)
+- ✅ Edit pengalaman kerja (perusahaan, posisi, lokasi)
+- ✅ Edit data pendidikan
+- ✅ Simpan perubahan langsung ke file
+- ✅ Protected dengan autentikasi NextAuth
+
+### 🔑 Cara Mengganti Password
+
+**PENTING:** Ganti password default sebelum deploy ke production!
+
+```bash
+# 1. Edit file scripts/generate-password.js
+# Ganti nilai password dengan password baru Anda
+
+# 2. Generate hash baru
+node scripts/generate-password.js
+
+# 3. Copy hash yang dihasilkan ke .env.local
+# ADMIN_PASSWORD_HASH=hash_yang_baru
+
+# 4. Restart aplikasi
+pm2 restart myprotofolio
+```
+
+### 📖 Dokumentasi Lengkap
+Lihat **[ADMIN_GUIDE.md](./ADMIN_GUIDE.md)** untuk panduan lengkap penggunaan admin panel.
+
+### 🔒 Keamanan
+- ✅ Password di-hash dengan bcrypt
+- ✅ Session management dengan NextAuth
+- ✅ Protected routes
+- ✅ Environment variables untuk credentials
+- ⚠️ **Jangan commit file `.env.local` ke Git!**
+
+### 🛠️ Tech Stack Admin
+- NextAuth.js - Authentication
+- bcryptjs - Password hashing
+- Server Actions - Data persistence
+
+---
+
+**Updated:** April 2026 — Admin Panel Added
