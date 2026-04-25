@@ -179,3 +179,53 @@ Lihat **[ADMIN_GUIDE.md](./ADMIN_GUIDE.md)** untuk panduan lengkap penggunaan ad
 ---
 
 **Updated:** April 2026 — Admin Panel Added
+
+---
+
+## 📊 Analytics Feature (NEW!)
+
+Website sekarang dilengkapi dengan **Visitor Analytics** untuk melacak pengunjung CV Anda!
+
+### 🎯 Fitur Analytics
+- ✅ Track IP address & lokasi pengunjung (negara, kota)
+- ✅ Deteksi ISP & timezone
+- ✅ Statistik per negara & kota
+- ✅ **Admin visits tracking** - Tau kapan HRD buka CV!
+- ✅ Real-time notifications
+- ✅ Quick stats di dashboard
+
+### 🚀 Setup Analytics
+
+```bash
+# Setup database tables
+npm run setup:analytics
+```
+
+### 📈 Akses Analytics Dashboard
+1. Login admin: `http://your-domain.com/admin`
+2. Klik tombol **"📊 Analytics"** di header
+3. Atau langsung: `http://your-domain.com/admin/analytics`
+
+### 🎯 Cara Tau HRD Sudah Buka CV
+Di Analytics Dashboard, perhatikan:
+- **Admin Visits** counter - jumlah kunjungan dari admin mode
+- Badge **Admin** (kuning) di Recent Visitors table
+- Cek lokasi & ISP - apakah sesuai dengan perusahaan target?
+
+### 📊 Data yang Dilacak
+- IP Address
+- Lokasi (Negara, Kota, Region)
+- ISP (Internet Service Provider)
+- Timezone & Koordinat
+- Browser & Device info
+- Halaman yang dikunjungi
+- Referrer (dari mana datang)
+- Waktu kunjungan
+- Status Admin/Public
+
+### 📖 Dokumentasi
+Lihat **[README_ANALYTICS.md](./README_ANALYTICS.md)** untuk detail lengkap.
+
+---
+
+**Updated:** April 2026 — Analytics Feature Added

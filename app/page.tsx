@@ -7,6 +7,7 @@ import SkillsSection from "@/components/SkillsSection";
 import EducationSection from "@/components/EducationSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import VisitorTracker from "@/components/VisitorTracker";
 import { getCVData } from "@/lib/getCVData";
 
 // Force dynamic rendering
@@ -18,6 +19,7 @@ export default async function Home() {
   
   return (
     <main className="relative bg-[#0A0A0F] min-h-screen">
+      <VisitorTracker />
       <Navbar />
       <HeroSection data={cvData} />
       <AboutSection data={cvData} />

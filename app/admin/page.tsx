@@ -6,6 +6,8 @@ import { cvData } from "@/lib/data";
 import ProjectsEditor from "@/components/admin/ProjectsEditor";
 import SkillsEditor from "@/components/admin/SkillsEditor";
 import ExperienceEditor from "@/components/admin/ExperienceEditor";
+import VisitorTracker from "@/components/VisitorTracker";
+import QuickStats from "@/components/admin/QuickStats";
 
 export default function AdminPage() {
   const { data: session, status } = useSession({
@@ -86,6 +88,7 @@ export default function AdminPage() {
 
   return (
     <div className="min-h-screen bg-[#0A0A0F]">
+      <VisitorTracker isAdmin={true} />
       {/* Header */}
       <div className="bg-[#111118] border-b border-[#1E1E2E] sticky top-0 z-50">
         <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
@@ -93,6 +96,12 @@ export default function AdminPage() {
             Admin <span className="text-[#00FFB2]">Dashboard</span>
           </h1>
           <div className="flex items-center gap-4">
+            <a
+              href="/admin/analytics"
+              className="px-4 py-2 bg-[#00FFB2]/10 text-[#00FFB2] border border-[#00FFB2]/30 rounded-lg text-sm hover:bg-[#00FFB2]/20 transition-colors"
+            >
+              📊 Analytics
+            </a>
             <a
               href="/"
               target="_blank"
@@ -111,6 +120,9 @@ export default function AdminPage() {
       </div>
 
       <div className="max-w-7xl mx-auto px-6 py-8">
+        {/* Quick Stats */}
+        <QuickStats />
+
         {/* Save Button & Message */}
         <div className="mb-6 flex items-center justify-between">
           <div className="flex gap-2">
